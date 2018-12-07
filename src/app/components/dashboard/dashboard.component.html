@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-3 d-none d-md-block sidebar">
+      <div class="text-center">
+        <img src="https://graph.facebook.com/1314857181/picture?height=256&width=256" class="profile-photo">
+        <div class="text-center px-3 mt-2 mb-1"><h5>Chonlasith Jucksriporn</h5></div>
+      </div>
+      <app-stats-box></app-stats-box>
+      <div class="bottom-nav">
+        <nav class="micro-nav">
+          <ul>
+            <li><a [routerLink]="['/vr/new']">สร้าง Virtual Run</a></li>
+          </ul>
+        </nav>
+        <nav class="flat d-flex justify-content-center footer-nav">
+          <ul>
+            <li><a [routerLink]="['/vr']" title="หน้าหลัก" class="text-danger"><fa-icon [icon]="faHome" class="fa-2x"></fa-icon></a></li>
+            <li><img src="/assets/img/odds-runners.png" width="48" height="48"></li>
+            <li><a href="https://www.strava.com" target="_blank" title="ไป Strava ของฉัน" class="text-danger"><fa-icon [icon]="faStrava" class="fa-2x"></fa-icon></a></li>
+          </ul>
+        </nav>
+      </div>
+    </nav>
+    <main role="main" class="col-md-8 ml-sm-auto col-lg-9 px-4 main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

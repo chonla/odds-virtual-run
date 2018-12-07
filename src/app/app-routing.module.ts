@@ -1,7 +1,37 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { VrListComponent } from './components/vr-list/vr-list.component';
+import { VrDetailComponent } from './components/vr-detail/vr-detail.component';
+import { VrEditorComponent } from './components/vr-editor/vr-editor.component';
 
-const routes: Routes = [];
+const routes: Routes = [{
+  path: '',
+  component: WelcomeComponent
+}, {
+  path: 'vr',
+  component: DashboardComponent,
+  children: [
+    {
+      path: '',
+      children: [
+        {
+          path: '',
+          component: VrListComponent
+        },
+        {
+          path: 'new',
+          component: VrEditorComponent
+        },
+        {
+          path: ':id',
+          component: VrDetailComponent
+        }
+      ]
+    }
+  ]
+}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

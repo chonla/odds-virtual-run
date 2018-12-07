@@ -2,8 +2,14 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const apiBase = 'http://localhost:8080';
+
 export const environment = {
-  production: false
+  production: false,
+  urls: {
+    baseUrl: apiBase,
+    signIn: `https://www.strava.com/oauth/authorize?client_id=30053&redirect_uri=${apiBase}/api/gateway&response_type=code&scope=activity:read_all`
+  }
 };
 
 /*
