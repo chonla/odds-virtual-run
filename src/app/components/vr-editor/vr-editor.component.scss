@@ -1,0 +1,13 @@
+.vr-detail {
+  height: 400px;
+}
+
+.button-row {
+  button {
+    margin-left: 16px;
+
+    &:first-child {
+      margin-left: 0px;
+    }
+  }
+}
