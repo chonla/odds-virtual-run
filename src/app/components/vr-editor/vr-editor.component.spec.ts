@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VrEditorComponent } from './vr-editor.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker/public_api';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { QuillModule } from 'ngx-quill';
 
 describe('VrEditorComponent', () => {
   let component: VrEditorComponent;
@@ -12,7 +12,8 @@ describe('VrEditorComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ VrEditorComponent ],
       imports: [
-        BsDatepickerModule.forRoot()
+        BsDatepickerModule.forRoot(),
+        QuillModule
       ]
     })
     .compileComponents();
