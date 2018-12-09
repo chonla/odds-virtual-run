@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { QuillModule } from 'ngx-quill'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { VrEditorComponent } from './components/vr-editor/vr-editor.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FontAwesomeModule,
     BsDatepickerModule.forRoot(),
     QuillModule

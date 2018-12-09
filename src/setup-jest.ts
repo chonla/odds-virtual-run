@@ -1,6 +1,6 @@
 import 'jest-preset-angular';
-require('./polyfills-mutation-observer.js')(global);
-require('./polyfills-getselection.js')(global);
+import { MutationObserver } from './polyfills/MutationObserver';
+import { getSelectionShim } from './polyfills/getSelectionShim';
 
 /* global mocks for jsdom */
 const mock = () => {
@@ -18,7 +18,8 @@ Object.defineProperty(window, 'sessionStorage', { value: mock() });
 Object.defineProperty(window, 'getComputedStyle', {
   value: () => ['-webkit-appearance'],
 });
-// Object.defineProperty(window, 'MutationObserver', { value: MutationObserver });
+Object.defineProperty(window, 'MutationObserver', {value: MutationObserver});
+Object.defineProperty(document, 'getSelection', {value: getSelectionShim});
 
 Object.defineProperty(document.body.style, 'transform', {
   value: () => {
