@@ -500,8 +500,9 @@ export class MutationRecord {
 
 import { EventEmitter } from 'events';
 
-export class MutationNotifier extends EventEmitter {
+export class MutationNotifier {
   private static _instance: MutationNotifier = null;
+  private _emitter: EventEmitter = null;
 
   static getInstance() {
     if (!MutationNotifier._instance) {
@@ -511,15 +512,48 @@ export class MutationNotifier extends EventEmitter {
   }
 
   constructor() {
-    super();
-    this.setMaxListeners(100);
+    this._emitter = new EventEmitter();
+    this._emitter.setMaxListeners(100);
   }
 
   destruct() {
-    this.removeAllListeners("changed");
+    this._emitter.removeAllListeners("changed");
   }
 
   notifyChanged(node: Node) {
-    this.emit("changed", node);
+    this._emitter.emit("changed", node);
+  }
+
+  on(event: string | symbol, listener: (...args: any[]) => void) {
+    this._emitter.on(event, listener);
+  }
+
+  removeListener(event: string | symbol, listener: (...args: any[]) => void) {
+    this._emitter.removeListener(event, listener);
   }
 }
+
+
+// export class MutationNotifier extends EventEmitter {
+//   private static _instance: MutationNotifier = null;
+
+//   static getInstance() {
+//     if (!MutationNotifier._instance) {
+//       MutationNotifier._instance = new MutationNotifier();
+//     }
+//     return MutationNotifier._instance;
+//   }
+
+//   constructor() {
+//     super();
+//     this.setMaxListeners(100);
+//   }
+
+//   destruct() {
+//     this.removeAllListeners("changed");
+//   }
+
+//   notifyChanged(node: Node) {
+//     this.emit("changed", node);
+//   }
+// }
