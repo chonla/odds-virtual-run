@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { QuillModule } from 'ngx-quill'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,8 @@ import { VrListComponent } from './components/vr-list/vr-list.component';
 import { StatsBoxComponent } from './components/stats-box/stats-box.component';
 import { VrDetailComponent } from './components/vr-detail/vr-detail.component';
 import { VrEditorComponent } from './components/vr-editor/vr-editor.component';
+import { ApiRequestInterceptor } from './interceptor/api-request.interceptor';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,10 @@ import { VrEditorComponent } from './components/vr-editor/vr-editor.component';
     BsDatepickerModule.forRoot(),
     QuillModule
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: ApiRequestInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

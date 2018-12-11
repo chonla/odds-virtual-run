@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Athlete } from 'src/app/models/athlete';
 
 @Component({
   selector: 'app-stats-box',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stats-box.component.scss']
 })
 export class StatsBoxComponent implements OnInit {
+  @Input() profile: Athlete;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.profile)
   }
 
 }

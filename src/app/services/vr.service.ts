@@ -9,10 +9,10 @@ import { environment } from '../../environments/environment';
 })
 export class VrService {
 
-  // constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  // me(): Observable<Athlete> {
-    // const api = `${environment.urls.signIn}/api/me`;
-    // return this.http.get<Athlete>(api);
-  // }
+  me(): Observable<Athlete> {
+    const api = `${environment.urls.baseUrl}/api/me`;
+    return this.http.get<Athlete>(api);
+  }
 }

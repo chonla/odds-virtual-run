@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { faStrava } from '@fortawesome/free-brands-svg-icons';
 import { VrService } from '../../services/vr.service';
+import { Athlete } from 'src/app/models/athlete';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,15 +11,16 @@ import { VrService } from '../../services/vr.service';
 })
 export class DashboardComponent implements OnInit {
 
+  me: Athlete;
   faHome = faHome;
   faStrava = faStrava;
 
   constructor(private vr: VrService) { }
 
   ngOnInit() {
-    // this.vr.me().subscribe(data => {
-    //   console.log(data);
-    // });
+    this.vr.me().subscribe((data: Athlete) => {
+      this.me = data;
+    });
   }
 
 }

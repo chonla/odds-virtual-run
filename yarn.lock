@@ -5042,6 +5042,11 @@ ngx-bootstrap@^3.1.2:
   resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-3.1.2.tgz#f466f6290b456806dac2a9b95a12f9dc4979782f"
   integrity sha512-ULooVAtHBir96PDOz8aDP+slkoY+YX3EWeYV7rwkwMQooc6MaFc+EFBBrAkQf1n0N/rJ4Z9GGccRS5vk/1JFog==
 
+ngx-cookie-service@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-cookie-service/-/ngx-cookie-service-2.1.0.tgz#8023f9edfcd8bd4f0b299b1f0c263112dbb0e261"
+  integrity sha512-7g7NEo7dYp6ap0j5qZ4Nf6nrU4WVdx8ycRQbWyLPps6mrR/+5vKU73ie0CMuKzl625bDTBjjJ60AmqTsp4l+AQ==
+
 ngx-quill@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/ngx-quill/-/ngx-quill-4.4.2.tgz#52bad0076e8ab89a721157bfdcafb9cbcdb285ef"
