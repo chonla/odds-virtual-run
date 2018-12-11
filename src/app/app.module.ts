@@ -15,6 +15,7 @@ import { VrDetailComponent } from './components/vr-detail/vr-detail.component';
 import { VrEditorComponent } from './components/vr-editor/vr-editor.component';
 import { ApiRequestInterceptor } from './interceptor/api-request.interceptor';
 import { CookieService } from 'ngx-cookie-service';
+import { FriendlyDateTimePipe } from './pipes/friendly-date-time.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { CookieService } from 'ngx-cookie-service';
     VrListComponent,
     StatsBoxComponent,
     VrDetailComponent,
-    VrEditorComponent
+    VrEditorComponent,
+    FriendlyDateTimePipe
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,6 @@ export class StatsBoxComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.profile)
   }
 
 }
