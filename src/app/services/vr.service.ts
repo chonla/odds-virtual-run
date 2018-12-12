@@ -21,7 +21,7 @@ export class VrService {
   create(formValue) { //}: Observable<Vr> {
     const api = `${environment.urls.baseUrl}/api/vr`;
     const vr: Vr = {
-      key: "",
+      link: "",
       title: formValue.title,
       period: [new Date(formValue.period[0]).toISOString(), new Date(formValue.period[1]).toISOString()],
       detail: formValue.detail,
@@ -29,9 +29,6 @@ export class VrService {
       created_datetime: "",
       athletes: []
     };
-    vr.period.map(o => (new Date(o)).toUTCString());
-    console.log(vr);
     return this.http.post<Vr>(api, vr);
-    // return
   }
 }

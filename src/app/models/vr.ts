@@ -1,5 +1,5 @@
 export interface Vr {
-  key: string
+  link: string
   title: string
   period: string[]
   detail: string
