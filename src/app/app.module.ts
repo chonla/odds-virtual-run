@@ -16,6 +16,7 @@ import { VrEditorComponent } from './components/vr-editor/vr-editor.component';
 import { ApiRequestInterceptor } from './interceptor/api-request.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { FriendlyDateTimePipe } from './pipes/friendly-date-time.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { FriendlyDateTimePipe } from './pipes/friendly-date-time.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     BsDatepickerModule.forRoot(),
     QuillModule

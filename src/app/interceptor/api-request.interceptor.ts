@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiRequestInterceptor {
 
-  constructor( private auth:AuthService) {
+  constructor(private auth:AuthService, private router:Router) {
 
   }
 
@@ -20,7 +22,15 @@ export class ApiRequestInterceptor {
         headers: req.headers.set('Authorization', `Bearer ${token}`)
       });
     }
-    return next.handle(req);
+    return next.handle(req)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 400) {
+            this.router.navigate(['/']);
+          }
+          return throwError(error);
+        })
+      );
   }
 
 }

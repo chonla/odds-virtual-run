@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { Athlete } from '../models/athlete';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Vr } from '../models/vr';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +16,22 @@ export class VrService {
   me(): Observable<Athlete> {
     const api = `${environment.urls.baseUrl}/api/me`;
     return this.http.get<Athlete>(api);
+  }
+
+  create(formValue) { //}: Observable<Vr> {
+    const api = `${environment.urls.baseUrl}/api/vr`;
+    const vr: Vr = {
+      key: "",
+      title: formValue.title,
+      period: [new Date(formValue.period[0]).toISOString(), new Date(formValue.period[1]).toISOString()],
+      detail: formValue.detail,
+      created_by: 0,
+      created_datetime: "",
+      athletes: []
+    };
+    vr.period.map(o => (new Date(o)).toUTCString());
+    console.log(vr);
+    return this.http.post<Vr>(api, vr);
+    // return
   }
 }

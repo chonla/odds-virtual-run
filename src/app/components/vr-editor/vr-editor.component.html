@@ -1,20 +1,20 @@
 <h2>สร้าง Virtual Run</h2>
 
-<form>
+<form [formGroup]="vrForm">
   <div class="form-group">
     <label for="title">ชื่อ Virtual Run</label>
-    <input type="text" id="title" class="form-control" placeholder="ชื่อ Virtual Run">
+    <input type="text" formControlName="title" id="title" class="form-control" placeholder="ชื่อ Virtual Run">
   </div>
   <div class="form-group">
     <label for="period">ช่วงเวลา</label>
-    <input type="text" id="period" placeholder="เริ่มตั้งแต่เมื่อไหร่ ถึงเมื่อไหร่" class="form-control" bsDaterangepicker [bsConfig]="{'containerClass':'theme-red', 'showWeekNumbers': false}">
+    <input type="text" formControlName="period" id="period" placeholder="เริ่มตั้งแต่เมื่อไหร่ ถึงเมื่อไหร่" class="form-control" bsDaterangepicker [bsConfig]="{'containerClass':'theme-red', 'showWeekNumbers': false}">
   </div>
   <div class="form-group">
     <label for="detail">รายละเอียด</label>
-    <quill-editor id="detail" theme="bubble" class="form-control vr-detail" placeholder="รายละเอียด"></quill-editor>
+    <quill-editor id="detail" formControlName="detail" theme="bubble" class="form-control vr-detail" placeholder="รายละเอียด"></quill-editor>
   </div>
   <div class="text-right button-row">
     <button type="button" class="btn btn-secondary">ยกเลิก</button>
-    <button type="submit" class="btn btn-danger">บันทึก</button>
+    <button type="submit" class="btn btn-danger" (click)="saveForm()">บันทึก</button>
   </div>
 </form>
