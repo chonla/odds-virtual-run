@@ -18,7 +18,7 @@ export class VrService {
     return this.http.get<Athlete>(api);
   }
 
-  create(formValue) { //}: Observable<Vr> {
+  create(formValue): Observable<Vr> {
     const api = `${environment.urls.baseUrl}/api/vr`;
     const vr: Vr = {
       link: "",
@@ -30,5 +30,10 @@ export class VrService {
       athletes: []
     };
     return this.http.post<Vr>(api, vr);
+  }
+
+  get(link: string): Observable<Vr> {
+    const api = `${environment.urls.baseUrl}/api/vr/${link}`;
+    return this.http.get<Vr>(api);
   }
 }
