@@ -36,4 +36,9 @@ export class VrService {
     const api = `${environment.urls.baseUrl}/api/vr/${link}`;
     return this.http.get<Vr>(api);
   }
+
+  available(): Observable<Vr[]> {
+    const api = `${environment.urls.baseUrl}/api/vr`;
+    return this.http.get<Vr[]>(api);
+  }
 }
