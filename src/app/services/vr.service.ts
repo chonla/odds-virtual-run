@@ -41,4 +41,10 @@ export class VrService {
     const api = `${environment.urls.baseUrl}/api/vr`;
     return this.http.get<Vr[]>(api);
   }
+
+  mine(): Observable<Vr[]> {
+    const api = `${environment.urls.baseUrl}/api/me/vr`;
+    return this.http.get<Vr[]>(api);
+  }
+
 }
