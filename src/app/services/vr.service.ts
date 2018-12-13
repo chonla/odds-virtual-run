@@ -47,4 +47,9 @@ export class VrService {
     return this.http.get<Vr[]>(api);
   }
 
+  join(link: string, formValue): Observable<Vr> {
+    const api = `${environment.urls.baseUrl}/api/join/${link}`;
+    return this.http.post<Vr>(api, formValue);
+  }
+
 }
