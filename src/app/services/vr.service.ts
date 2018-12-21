@@ -4,14 +4,14 @@ import { Athlete } from '../models/athlete';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Vr } from '../models/vr';
-import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VrService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   me(): Observable<Athlete> {
     const api = `${environment.urls.baseUrl}/api/me`;
@@ -27,7 +27,7 @@ export class VrService {
       detail: formValue.detail,
       created_by: 0,
       created_datetime: "",
-      athletes: []
+      engagements: []
     };
     return this.http.post<Vr>(api, vr);
   }

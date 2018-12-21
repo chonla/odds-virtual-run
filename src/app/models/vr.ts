@@ -5,5 +5,13 @@ export interface Vr {
   detail: string
   created_by: number
   created_datetime: string
-  athletes: number[]
+  engagements: Engagement[]
+}
+
+export interface Engagement {
+  athlete_id: number
+  athlete_name: string
+  distance: number
+  taken_distance: number
+  percent_complete: number
 }

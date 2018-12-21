@@ -3,6 +3,7 @@ import { faHome, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { faStrava } from '@fortawesome/free-brands-svg-icons';
 import { VrService } from '../../services/vr.service';
 import { Athlete } from 'src/app/models/athlete';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,12 +17,16 @@ export class DashboardComponent implements OnInit {
   faStrava = faStrava;
   faSpinner = faSpinner;
 
-  constructor(private vr: VrService) { }
+  constructor(private vr: VrService, private auth: AuthService) { }
 
   ngOnInit() {
     this.vr.me().subscribe((data: Athlete) => {
       this.me = data;
     });
+  }
+
+  signOut() {
+    this.auth.signOut();
   }
 
 }

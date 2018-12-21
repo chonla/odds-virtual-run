@@ -10,6 +10,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AuthService {
 
+  private myid = 0;
+
   constructor(
     private cookie: CookieService,
     private router: Router,
@@ -28,8 +30,13 @@ export class AuthService {
   }
 
   signOut() {
+    this.cookie.delete('me', '/');
     this.cookie.delete('token', '/');
     this.router.navigate(['/welcome']);
+  }
+
+  whoami(): string {
+    return this.cookie.get('me');
   }
 
 }

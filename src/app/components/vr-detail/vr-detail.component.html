@@ -2,21 +2,37 @@
   <div>
     <h2>{{ vrDetail.title }}</h2>
     <div class="vr-detail" [innerHTML]="vrDetail.detail"></div>
-    <button class="btn btn-danger" data-toggle="modal" data-target="#joinModal">เข้าร่วม Virtual Run นี้</button>
+    <h3>ระยะเวลา</h3>
+    <div class="vr-detail">{{ vrDetail.period[0] | date }} ถึง {{ vrDetail.period[1] | date }}</div>
+    <button class="btn btn-danger" data-toggle="modal" data-target="#joinModal" *ngIf="!joined && !joining">เข้าร่วม Virtual Run นี้</button>
   </div>
-  <div class="mt-4">
+  <div class="mt-4" *ngIf="joined">
     <h3>ความคืบหน้า</h3>
     <p>
-      คุณสัญญาว่าจะวิ่งในกิจกรรมนี้เป็นระยะทาง <span class="text-danger font-weight-bold">269</span> ก.ม.
-      ตอนนี้คุณวิ่งไปแล้ว <span class="text-danger font-weight-bold">155</span> ก.ม.
-      ยังเหลืออีก <span class="text-danger font-weight-bold">114</span> ก.ม. สู้ ๆ นะ!!
+      คุณสัญญาว่าจะวิ่งในกิจกรรมนี้เป็นระยะทาง <span class="text-danger font-weight-bold">{{ engagement.distance }}</span> ก.ม.
+      ตอนนี้คุณวิ่งไปแล้ว <span class="text-danger font-weight-bold">{{ (engagement.taken_distance / 1000.0) | number: '1.2-2' }}</span> ก.ม.
+      <span *ngIf="!completed">
+      ยังเหลืออีก <span class="text-danger font-weight-bold">{{ engagement.distance - (engagement.taken_distance / 1000.0) | number: '1.2-2' }}</span> ก.ม.
+        <span *ngIf="percentCompleted < 50.0">
+          หนทางยังอีกไกล ยังไหวอยู่ใช่ไหม สู้ ๆ นะ!!
+        </span>
+        <span *ngIf="50.0 <= percentCompleted && percentCompleted < 80.0">
+          เลยครึ่งทางมาแล้ว เก่งมาก ลุย ๆ!!
+        </span>
+        <span *ngIf="80.0 <= percentCompleted">
+          ใกล้แล้ว อีกนิดเดียว อย่าเพิ่งท้อ สู้ ๆ!!
+        </span>
+      </span>
+      <span *ngIf="completed">
+      คุณวิ่งครบตามระยะที่สัญญาไว้แล้ว สุดยอดมากเลย!!
+      </span>
     </p>
     <div class="progress">
-      <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [style.width.%]="percentCompleted" [attr.aria-valuenow]="percentCompleted" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
   </div>
   <div class="mt-4">
-    <h3>เพื่อน ๆ</h3>
+    <h3>คุณและเพื่อน ๆ</h3>
     <table class="table">
       <thead>
         <tr>
@@ -27,23 +43,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="align-middle">Chaiyarin</td>
-          <td class="align-middle">100 ก.ม.</td>
-          <td class="align-middle">36 ก.ม.</td>
-          <td class="align-middle">36%</td>
+        <tr *ngIf="vrDetail.engagements.length == 0">
+          <td colspan="4">ยังไม่มีใครร่วมกิจกรรมนี้เลย <span *ngIf="!joined">ถ้าสนใจก็ <a class="linkable text-danger" data-toggle="modal" data-target="#joinModal" *ngIf="!joined && !joining">คลิกเลย!</a></span></td>
         </tr>
-        <tr>
-          <td class="align-middle">Waraporn</td>
-          <td class="align-middle">100 ก.ม.</td>
-          <td class="align-middle">36 ก.ม.</td>
-          <td class="align-middle">36%</td>
-        </tr>
-        <tr>
-          <td class="align-middle">Paramate</td>
-          <td class="align-middle">100 ก.ม.</td>
-          <td class="align-middle">36 ก.ม.</td>
-          <td class="align-middle">36%</td>
+        <tr *ngFor="let e of vrDetail.engagements">
+          <td class="align-middle">{{ e.athlete_name }}</td>
+          <td class="align-middle">{{ e.distance }} ก.ม.</td>
+          <td class="align-middle">{{ e.taken_distance / 1000.0 | number : '1.2-2' }} ก.ม.</td>
+          <td class="align-middle">{{ e.percent_complete | number : '1.2-2' }}</td>
         </tr>
       </tbody>
     </table>
@@ -71,7 +78,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-        <button type="button" class="btn btn-primary" (click)="join()">ยืนยัน</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="join()">ยืนยัน</button>
       </div>
     </div>
   </div>
