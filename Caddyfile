@@ -1,0 +1,17 @@
+localhost:80 {
+    proxy /api localhost:8080 {
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwared-For {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+    }
+
+    root /var/www
+    gzip
+    log /var/log/caddy.log
+    errors /var/log/caddy.log
+
+    rewrite {
+        to {path} {path}/ /
+    }
+}
