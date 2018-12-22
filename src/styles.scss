@@ -47,3 +47,45 @@ body {
 .linkable {
   cursor: pointer;
 }
+
+.modal-body {
+  fa-icon {
+    font-size: 40px;
+    width: 50px;
+  }
+}
+
+.modal-danger {
+  fa-icon {
+    color: #d9534f;
+  }
+}
+
+/* callout */
+.bd-callout {
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #ccc;
+  border-left-width: .25rem;
+  border-radius: .25rem;
+
+  fa-icon {
+    font-size: 40px;
+    width: 50px;
+  }
+}
+
+.bd-callout-danger {
+  border-left-color: #d9534f;
+  background: #fafafa;
+
+  h4 {
+    color: #d9534f;
+  }
+
+  fa-icon {
+    color: #d9534f;
+  }
+}
+

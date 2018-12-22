@@ -1,4 +1,5 @@
 <div *ngIf="vrDetail">
+
   <div>
     <h2>{{ vrDetail.title }}</h2>
     <div class="vr-detail" [innerHTML]="vrDetail.detail"></div>
@@ -6,6 +7,7 @@
     <div class="vr-detail">{{ vrDetail.period[0] | date }} ถึง {{ vrDetail.period[1] | date }}</div>
     <button class="btn btn-danger" data-toggle="modal" data-target="#joinModal" *ngIf="!joined && !joining">เข้าร่วม Virtual Run นี้</button>
   </div>
+
   <div class="mt-4" *ngIf="joined">
     <h3>ความคืบหน้า</h3>
     <p>
@@ -31,6 +33,7 @@
       <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [style.width.%]="percentCompleted" [attr.aria-valuenow]="percentCompleted" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
   </div>
+
   <div class="mt-4">
     <h3>คุณและเพื่อน ๆ</h3>
     <table class="table">
@@ -54,8 +57,29 @@
         </tr>
       </tbody>
     </table>
-
   </div>
+
+  <div class="mt-5 bd-callout bd-callout-danger" *ngIf="joined || own">
+    <div class="media">
+      <fa-icon [icon]="faExclamation"></fa-icon>
+      <div class="media-body">
+        <h4>โซนอันตราย</h4>
+        <p *ngIf="joined" class="mt-4">
+          คุณอาจจะเข้าร่วมกิจกรรมนี้โดยไม่ได้ตั้งใจ หากคุณต้องการออกจากกิจกรรมนี้ คลิกที่ปุ่มด้านล่างนี้ได้เลย
+        </p>
+        <p *ngIf="joined">
+          <button class="btn btn-danger" data-toggle="modal" data-target="#leaveModal">ออกจาก Virtual Run นี้</button>
+        </p>
+        <p *ngIf="own" class="mt-4">
+          เพราะว่าคุณเป็นคนสร้าง Virtual Running คุณอาจจะอยากแก้ไข หรือยกเลิก Virtual Run นี้ คลิกที่ปุ่ม <span class="text-warning">แก้ไข Virtual Run</span> เพื่อแก้ไข Virtual Run นี้ หรือคลิกที่ปุ่ม <span class="text-danger">ยกเลิก Virtual Run</span> เพื่อยกเลิก Virtual Run นี้
+        </p>
+        <p *ngIf="own">
+          <button class="btn btn-warning" (click)="edit()">แก้ไข Virtual Run นี้</button> <button class="btn btn-danger ml-2" data-toggle="modal" data-target="#deleteModal">ยกเลิก Virtual Run นี้</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- Modal -->
@@ -79,6 +103,58 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="join()">ยืนยัน</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteVrLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteVrLabel">ยกเลิก Virtual Run</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-danger">
+        <div class="media">
+          <fa-icon [icon]="faExclamation"></fa-icon>
+          <div class="media-body">
+            <p>ต้องการที่จะยกเลิก Virtual Run นี้จริง ๆ ใช่ไหม? เพื่อน ๆ ของคุณอาจจะสนใจ Virtual Run นี้อยู่นะ</p>
+            <p>อย่างไรก็ตาม อย่าลืมบอกเพื่อน ๆ ของคุณที่เข้าร่วม Virtual Run นี้แล้วด้วยนะ ว่าคุณได้ลบ Virtual Run นี้ออกไปแล้ว</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยังไม่ลบตอนนี้</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="remove()">ยืนยันที่จะลบ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="leaveModal" tabindex="-1" role="dialog" aria-labelledby="leaveVrLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="leaveVrLabel">ออกจาก Virtual Run</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal-danger">
+        <div class="media">
+          <fa-icon [icon]="faExclamation"></fa-icon>
+          <div class="media-body">
+            <p>คุณอาจจะเข้าร่วมกิจกรรมนี้โดยไม่ได้ตั้งใจ มันเป็นเรื่องที่น่าเสียใจมาก หากคุณสนใจจะไม่เข้าร่วมกิจกรรมเพื่อสุขภาพนี้</p>
+            <p>อย่างไรก็ตาม เราก็เคารพในการตัดสินใจของคุณนะ</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยังไม่ออกตอนนี้</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="leave()">ยืนยันที่จะออกจาก Virtual Run</button>
       </div>
     </div>
   </div>

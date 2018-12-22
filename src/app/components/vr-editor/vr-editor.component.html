@@ -1,4 +1,5 @@
-<h2>สร้าง Virtual Run</h2>
+<h2 *ngIf="!editMode">สร้าง Virtual Run</h2>
+<h2 *ngIf="editMode">แก้ไข Virtual Run</h2>
 
 <form [formGroup]="vrForm">
   <div class="form-group">

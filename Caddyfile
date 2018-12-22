@@ -1,5 +1,5 @@
 localhost:80 {
-    proxy /api localhost:8080 {
+    proxy /api docker.for.mac.host.internal:8080 {
         header_upstream Host {host}
         header_upstream X-Real-IP {remote}
         header_upstream X-Forwared-For {remote}
@@ -12,6 +12,7 @@ localhost:80 {
     errors /var/log/caddy.log
 
     rewrite {
+        if {path} not_starts_with /api
         to {path} {path}/ /
     }
 }

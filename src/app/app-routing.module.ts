@@ -27,6 +27,10 @@ const routes: Routes = [{
         {
           path: ':id',
           component: VrDetailComponent
+        },
+        {
+          path: 'edit/:id',
+          component: VrEditorComponent
         }
       ]
     }

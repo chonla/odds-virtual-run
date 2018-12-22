@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { VrService } from 'src/app/services/vr.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Vr, Engagement } from 'src/app/models/vr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PositiveNumberValidator } from 'src/app/validators/positive-number.validator';
 import { AuthService } from 'src/app/services/auth.service';
+import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-vr-detail',
@@ -12,16 +13,18 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./vr-detail.component.scss']
 })
 export class VrDetailComponent implements OnInit {
+  faExclamation = faExclamation;
   joinForm: FormGroup;
   vrDetail: Vr;
   vrID: string;
+  own: boolean;
   joined: boolean;
   joining: boolean;
   engagement: Engagement;
   percentCompleted: number;
   completed: boolean;
 
-  constructor(private vr: VrService, private auth: AuthService, private route: ActivatedRoute, private fb:FormBuilder) { }
+  constructor(private vr: VrService, private auth: AuthService, private route: ActivatedRoute, private fb:FormBuilder, private router:Router) { }
 
   ngOnInit() {
     this.vrID = this.route.snapshot.paramMap.get('id');
@@ -45,6 +48,7 @@ export class VrDetailComponent implements OnInit {
       const myEngagement = this.vrDetail.engagements.filter((o:Engagement) => {
         return `${o.athlete_id}` === myid;
       });
+      this.own = (`${this.vrDetail.created_by}` === myid);
       this.joined = (myEngagement.length > 0);
       if (this.joined) {
         this.engagement = myEngagement[0];
@@ -63,6 +67,23 @@ export class VrDetailComponent implements OnInit {
       });
     }
     return false;
+  }
+
+  edit() {
+    this.router.navigate(['/vr/edit/', this.vrID]);
+  }
+
+  remove() {
+    this.vr.remove(this.vrDetail.link).subscribe(result => {
+      this.router.navigate(['/vr']);
+    });
+  }
+
+  leave() {
+    this.vr.leave(this.vrDetail.link).subscribe(result => {
+      this.joined = false;
+      this.loadVr();
+    });
   }
 
 }
