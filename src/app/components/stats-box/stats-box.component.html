@@ -1,12 +1,12 @@
 <div class="standard-stats" *ngIf="profile">
-  <div class="alert alert-info" role="alert" *ngIf="profile.stats.recent.distance == 0.0">
+  <div class="alert alert-info text-smaller-2" role="alert" *ngIf="profile.stats.recent.distance == 0.0">
     ดูเหมือนว่าคุณจะยังไม่ได้เริ่มวิ่งเลยนะ หรือข้อมูลการวิ่งของคุณอาจจะยังไม่ได้อัพเดท รอหน่อยละกันนะ
   </div>
   <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted" *ngIf="profile.stats.recent.distance > 0.0">
     <span>ล่าสุด ({{ profile.stats.recent.start_date | friendlyDateTime }})</span>
   </h6>
   <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted" *ngIf="profile.stats.recent.distance == 0">
-    <span>ล่าสุด (ดูเหมือนว่าคุณจะยังไม่ได้เริ่มวิ่งเลยนะ)</span>
+    <span>ล่าสุด (-)</span>
   </h6>
   <div class="px-3 mt-2 mb-1">
   <span class="text-danger font-weight-bold">{{ profile.stats.recent.distance / 1000 | number:"1.2-2" }}</span> ก.ม.
