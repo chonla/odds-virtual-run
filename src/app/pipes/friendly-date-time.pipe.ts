@@ -37,7 +37,7 @@ export class FriendlyDateTimePipe implements PipeTransform {
 
       if (diff <= unit.max * unit.value) {
         var t = Math.round(diff / unit.value);
-        if (unit.name == 'day' && t === 1) {
+        if (unit.name == ' วัน' && t === 1) {
           return unit.single;
         }
         return t === 1 ? `${unit.single}${suffix}` : `${t} ${unit.name}${suffix}`;
