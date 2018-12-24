@@ -1,4 +1,4 @@
-const apiBase = 'http://localhost';
+const apiBase = 'https://run.odds.team';
 
 export const environment = {
   production: true,

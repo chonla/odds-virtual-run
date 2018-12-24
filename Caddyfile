@@ -1,3 +1,22 @@
+run.odds.team {
+    proxy /api api:8080 {
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwared-For {remote}
+        header_upstream X-Forwarded-Proto {scheme}
+    }
+
+    root /var/www
+    gzip
+    log /var/log/caddy.log
+    errors /var/log/caddy.log
+
+    rewrite {
+        if {path} not_starts_with /api
+        to {path} {path}/ /
+    }
+}
+
 localhost:80 {
     proxy /api docker.for.mac.host.internal:8080 {
         header_upstream Host {host}
