@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faHome, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSpinner, faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faStrava } from '@fortawesome/free-brands-svg-icons';
 import { VrService } from '../../services/vr.service';
 import { Athlete } from 'src/app/models/athlete';
@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit {
   faHome = faHome;
   faStrava = faStrava;
   faSpinner = faSpinner;
+  faPlus = faPlus;
+  faSignOutAlt = faSignOutAlt;
 
   constructor(private vr: VrService, private auth: AuthService) { }
 
