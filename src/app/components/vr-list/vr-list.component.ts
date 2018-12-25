@@ -11,7 +11,7 @@ export class VrListComponent implements OnInit {
   vrList: Vr[];
   myVrList: Vr[];
 
-  constructor(private vr: VrService) { }
+  constructor(private vr: VrService) {}
 
   ngOnInit() {
     this.vr.available().subscribe(data => this.vrList = data);
