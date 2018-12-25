@@ -81,7 +81,7 @@ export class VrService {
 
   remove(link: string): Observable<void> {
     const api = `${environment.urls.baseUrl}/api/vr/${link}`;
-    return this.http.delete<void>(api, {});
+    return this.http.delete<void>(api);
   }
 
 }
