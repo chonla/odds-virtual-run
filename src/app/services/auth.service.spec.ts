@@ -55,7 +55,7 @@ describe('AuthService', () => {
   });
 
   it('should check login by return status of token present', () => {
-    service.getToken();
+    service.isLogin();
 
     expect(mockCookieService.check).toHaveBeenCalledWith('token');
   });
@@ -63,8 +63,8 @@ describe('AuthService', () => {
   it('should remove all cookies and redirect to welcome page', () => {
     service.signOut();
 
-    expect(mockCookieService.delete).toHaveBeenCalledWith('token');
-    expect(mockCookieService.delete).toHaveBeenCalledWith('me');
+    expect(mockCookieService.delete).toHaveBeenCalledWith('token', '/');
+    expect(mockCookieService.delete).toHaveBeenCalledWith('me', '/');
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/welcome']);
   });
 
