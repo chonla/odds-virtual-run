@@ -1,7 +1,6 @@
 import { VrService } from './vr.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Version } from '../models/version';
 import { Subject } from 'rxjs';
 
 describe('VrService', () => {
