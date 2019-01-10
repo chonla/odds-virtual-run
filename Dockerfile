@@ -12,6 +12,7 @@ RUN ng build --prod
 FROM abiosoft/caddy
 
 EXPOSE 80
+EXPOSE 443
 
 COPY --from=builder /opt/Caddyfile /etc/Caddyfile
 
