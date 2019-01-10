@@ -1,3 +1,21 @@
 .vr-detail {
   padding: 20px;
 }
+
+.broad-screen {
+  display: block;
+}
+
+.tall-screen {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .broad-screen {
+    display: none;
+  }
+
+  .tall-screen {
+    display: block;
+  }
+}

@@ -73,8 +73,12 @@
         <p *ngIf="own" class="mt-4">
           เพราะว่าคุณเป็นคนสร้าง Virtual Running คุณอาจจะอยากแก้ไข หรือยกเลิก Virtual Run นี้ คลิกที่ปุ่ม <span class="text-warning">แก้ไข Virtual Run</span> เพื่อแก้ไข Virtual Run นี้ หรือคลิกที่ปุ่ม <span class="text-danger">ยกเลิก Virtual Run</span> เพื่อยกเลิก Virtual Run นี้
         </p>
-        <p *ngIf="own">
+        <p *ngIf="own" class="broad-screen">
           <button class="btn btn-warning" (click)="edit()">แก้ไข Virtual Run นี้</button> <button class="btn btn-danger ml-2" data-toggle="modal" data-target="#deleteModal">ยกเลิก Virtual Run นี้</button>
+        </p>
+        <p *ngIf="own" class="tall-screen">
+          <button class="btn btn-warning btn-block" (click)="edit()">แก้ไข Virtual Run นี้</button><br>
+          <button class="btn btn-danger ml-2 btn-block" data-toggle="modal" data-target="#deleteModal">ยกเลิก Virtual Run นี้</button>
         </p>
       </div>
     </div>
