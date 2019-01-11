@@ -6,6 +6,7 @@ COPY . .
 
 RUN npm install
 
+RUN ng test
 RUN ng build --prod
 
 

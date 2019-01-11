@@ -17,6 +17,10 @@ module.exports = {
   },
   transformIgnorePatterns: [
     '<rootDir>/node_modules/(?!ngx-cookie-service)'
+  ],
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/polyfills',
+    '<rootDir>/src/setup-jest.ts'
   ]
   // transformIgnorePatterns: [
   //   'node_modules/(?!(jest-test))',
