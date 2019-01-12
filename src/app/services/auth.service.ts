@@ -21,6 +21,11 @@ export class AuthService {
     return this.cookie.get('token');
   }
 
+  clearToken() {
+    this.cookie.delete('me', '/');
+    this.cookie.delete('token', '/');
+  }
+
   saveToken(token: string): Observable<any> {
     return this.http.get(`${environment.urls.baseUrl}/gateway?code=${token}`);
   }
@@ -30,8 +35,7 @@ export class AuthService {
   }
 
   signOut() {
-    this.cookie.delete('me', '/');
-    this.cookie.delete('token', '/');
+    this.clearToken();
     this.router.navigate(['/welcome']);
   }
 
