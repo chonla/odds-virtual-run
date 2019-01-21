@@ -15,15 +15,3 @@
     <span>ปีนี้ <span class="text-danger">{{ profile.stats.this_year_run_totals.distance / 1000 | number:"1.2-2" }} ก.ม.</span> ({{ profile.stats.this_year_run_totals.count }} ครั้ง)</span>
   </div>
 </div>
-
-<div class="mini-stats">
-  <div class="px-3 mt-2 mb-1">
-    <span class="font-weight-bold">ล่าสุด: </span><span class="text-danger font-weight-bold">{{ profile.stats.recent.distance / 1000 | number:"1.2-2" }}</span> ก.ม.
-  </div>
-  <div class="px-3 mt-2 mb-1">
-    <span class="font-weight-bold">เดือนนี้ :</span><span class="text-danger font-weight-bold">{{ profile.stats.this_month_run_totals.distance / 1000 | number:"1.2-2" }}</span> ก.ม.
-  </div>
-  <div class="px-3 mt-2 mb-1">
-    <span class="font-weight-bold">ปีนี้ :</span><span class="text-danger font-weight-bold">{{ profile.stats.this_year_run_totals.distance / 1000 | number:"1.2-2" }}</span> ก.ม.
-  </div>
-</div>
