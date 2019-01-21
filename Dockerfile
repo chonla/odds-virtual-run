@@ -2,9 +2,13 @@ FROM trion/ng-cli-e2e:latest AS builder
 
 WORKDIR /opt
 
+ARG APP_VERSION
+
 COPY . .
 
 RUN npm install
+
+RUN sed -i 's/dev/${APP_VERSION}/g' /opt/src/environments/version.ts
 
 RUN ng test
 RUN ng build --prod
