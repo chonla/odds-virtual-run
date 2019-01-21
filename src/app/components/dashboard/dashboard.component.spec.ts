@@ -43,7 +43,7 @@ describe('DashboardComponent', () => {
 
     mockVersion.next({version:'test'});
 
-    expect(component.buildNum).toEqual('dev-test');
+    expect(component.buildNum).toEqual(`${version.version}-test`);
   });
 
   it('should call signout', () => {
