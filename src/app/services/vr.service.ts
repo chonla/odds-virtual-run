@@ -1,9 +1,10 @@
-import { Injectable, Version } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Athlete } from '../models/athlete';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Vr } from '../models/vr';
+import { Version } from '../models/version';
 
 @Injectable({
   providedIn: 'root'

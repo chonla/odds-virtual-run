@@ -4,7 +4,7 @@ import { faStrava } from '@fortawesome/free-brands-svg-icons';
 import { VrService } from '../../services/vr.service';
 import { Athlete } from 'src/app/models/athlete';
 import { AuthService } from 'src/app/services/auth.service';
-import { Version } from '@angular/compiler';
+import { Version } from 'src/app/models/version';
 
 @Component({
   selector: 'app-dashboard',
