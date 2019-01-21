@@ -1,21 +1,28 @@
-<h2 *ngIf="!editMode">สร้าง Virtual Run</h2>
-<h2 *ngIf="editMode">แก้ไข Virtual Run</h2>
+<div class="card">
+  <form [formGroup]="vrForm">
+    <div class="card-body">
+      <h5 class="card-title" *ngIf="!editMode">สร้าง Virtual Run</h5>
+      <h5 class="card-title" *ngIf="editMode">แก้ไข Virtual Run</h5>
 
-<form [formGroup]="vrForm">
-  <div class="form-group">
-    <label for="title">ชื่อ Virtual Run</label>
-    <input type="text" formControlName="title" id="title" class="form-control" placeholder="ชื่อ Virtual Run">
-  </div>
-  <div class="form-group">
-    <label for="period">ช่วงเวลา</label>
-    <input type="text" formControlName="period" id="period" placeholder="เริ่มตั้งแต่เมื่อไหร่ ถึงเมื่อไหร่" class="form-control" bsDaterangepicker [bsConfig]="{'containerClass':'theme-red', 'showWeekNumbers': false}">
-  </div>
-  <div class="form-group">
-    <label for="detail">รายละเอียด</label>
-    <quill-editor id="detail" formControlName="detail" theme="bubble" class="form-control vr-detail" placeholder="รายละเอียด"></quill-editor>
-  </div>
-  <div class="text-right button-row">
-    <button type="button" class="btn btn-secondary">ยกเลิก</button>
-    <button type="submit" class="btn btn-danger" (click)="saveForm()">บันทึก</button>
-  </div>
-</form>
+      <div class="card-text">
+        <div class="form-group">
+          <label for="title">ชื่อ Virtual Run</label>
+          <input type="text" formControlName="title" id="title" class="form-control" placeholder="ชื่อ Virtual Run">
+        </div>
+        <div class="form-group">
+          <label for="period">ช่วงเวลา</label>
+          <input type="text" formControlName="period" id="period" placeholder="เริ่มตั้งแต่เมื่อไหร่ ถึงเมื่อไหร่" class="form-control" bsDaterangepicker [bsConfig]="{'containerClass':'theme-red', 'showWeekNumbers': false}">
+        </div>
+        <div class="form-group">
+          <label for="detail">รายละเอียด</label>
+          <quill-editor id="detail" formControlName="detail" theme="bubble" class="form-control vr-detail" placeholder="รายละเอียด"></quill-editor>
+        </div>
+      </div>
+
+    </div>
+    <div class="card-footer text-right button-row">
+      <button type="button" class="btn btn-secondary" (click)="cancel()">ยกเลิก</button>
+      <button type="submit" class="btn btn-danger" (click)="saveForm()">บันทึก</button>
+    </div>
+  </form>
+</div>

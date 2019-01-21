@@ -61,4 +61,12 @@ export class VrEditorComponent implements OnInit {
     return false;
   }
 
+  cancel() {
+    if (this.editMode) {
+      this.router.navigate(['/vr', this.vrID]);
+    } else {
+      this.router.navigate(['/vr']);
+    }
+  }
+
 }
