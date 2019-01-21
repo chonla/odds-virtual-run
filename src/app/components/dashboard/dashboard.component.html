@@ -1,33 +1,35 @@
+<div class="floating-sidebar">
+  <nav class="col-md-3 d-none d-md-block sidebar" *ngIf="!me">
+    <div class="text-center pt-4">
+      <fa-icon [icon]="faSpinner" class="spinning"></fa-icon> กำลังโหลด...
+    </div>
+  </nav>
+  <nav class="col-md-3 d-none d-md-block sidebar" *ngIf="me">
+    <div class="card profile-box" style="width: 18rem;">
+      <a [routerLink]="['/vr']"><img [src]="me.profile" class="card-img-top profile-image" alt="{{ me.firstname }} {{ me.lastname }}"></a>
+      <div class="card-body">
+        <h5 class="card-title">{{ me.firstname }} {{ me.lastname }}</h5>
+        <p class="card-text">
+          <app-stats-box [profile]="me"></app-stats-box>
+        </p>
+      </div>
+      <div class="card-footer white-footer">
+        <nav class="flat d-flex justify-content-center">
+          <ul>
+            <li><a [routerLink]="['/vr']" title="หน้าหลัก" class="text-danger"><fa-icon [icon]="faHome" class="fa-1dot5x"></fa-icon></a></li>
+            <li><a [routerLink]="['/vr/new']" title="สร้าง Virtual Run" class="text-danger"><fa-icon [icon]="faPlus" class="fa-1dot5x"></fa-icon></a></li>
+            <li><a href="https://www.strava.com" target="_blank" title="ไป Strava ของฉัน" class="text-danger"><fa-icon [icon]="faStrava" class="fa-1dot5x"></fa-icon></a></li>
+            <li><a href="" class="text-danger linkable" (click)="signOut()"><fa-icon [icon]="faSignOutAlt" class="fa-1dot5x"></fa-icon></a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </nav>
+</div>
+
 <div class="container-fluid">
   <div class="row">
-    <nav class="col-md-3 d-none d-md-block sidebar" *ngIf="!me">
-      <div class="text-center pt-4">
-        <fa-icon [icon]="faSpinner" class="spinning"></fa-icon> กำลังโหลด...
-      </div>
-    </nav>
-    <nav class="col-md-3 d-none d-md-block sidebar" *ngIf="me">
-      <div class="text-center">
-        <a [routerLink]="['/vr']"><img [src]="me.profile" class="profile-photo"></a>
-        <div class="text-center px-3 mt-2 mb-1"><h5>{{ me.firstname }} {{ me.lastname }}</h5></div>
-      </div>
-      <app-stats-box [profile]="me"></app-stats-box>
-      <div class="bottom-nav">
-        <nav class="micro-nav">
-          <ul>
-            <li><a [routerLink]="['/vr/new']">สร้าง Virtual Run</a></li>
-            <li><a href="" class="linkable" (click)="signOut()">ออกจากแอพ</a></li>
-          </ul>
-        </nav>
-        <nav class="flat d-flex justify-content-center footer-nav">
-          <ul>
-            <li><a [routerLink]="['/vr']" title="หน้าหลัก" class="text-danger"><fa-icon [icon]="faHome" class="fa-2x"></fa-icon></a></li>
-            <li><img src="/assets/img/odds-runners.png" width="48" height="48"></li>
-            <li><a href="https://www.strava.com" target="_blank" title="ไป Strava ของฉัน" class="text-danger"><fa-icon [icon]="faStrava" class="fa-2x"></fa-icon></a></li>
-          </ul>
-        </nav>
-      </div>
-    </nav>
-    <main role="main" class="col-md-8 ml-sm-auto col-lg-9 px-4 main-content">
+    <!-- <main role="main" class="col-md-8 ml-sm-auto col-lg-9 px-4 main-content">
       <div class="row top-nav">
         <div class="pl-3" *ngIf="!me">
           <fa-icon [icon]="faSpinner" class="spinning"></fa-icon> กำลังโหลด...
@@ -54,15 +56,15 @@
             </div>
           </div>
         </nav>
-      </div>
+      </div>-->
       <div class="page-content">
         <router-outlet></router-outlet>
-        <div class="row">
-          <div class="col-12 text-right version mb-2">
-            ODDS Virtual Run <span class="badge badge-secondary">build {{ buildNum }}</span>
-          </div>
-        </div>
       </div>
-    </main>
+    <!--</main>-->
+  </div>
+  <div class="row">
+    <div class="col-12 text-right version mb-2">
+      ODDS Virtual Run <span class="badge badge-secondary">build {{ buildNum }}</span>
+    </div>
   </div>
 </div>

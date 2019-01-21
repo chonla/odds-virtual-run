@@ -29,6 +29,8 @@ export class DashboardComponent implements OnInit {
       this.me = data;
     });
 
+    // this.me = {"id":5709162,"username":"chonla","firstname":"Chonlasith","lastname":"Jucksriporn","city":"Bang Yo","state":"Samut Prakan","country":"Thailand","sex":"M","profile":"https://graph.facebook.com/1314857181/picture?height=256\u0026width=256","profile_medium":"https://graph.facebook.com/1314857181/picture?height=256\u0026width=256","email":"","stats":{"recent":{"distance":10142.2,"elapsed_time":4422,"moving_time":4153,"title":"Evening Run","start_date":"2019-01-16T12:47:15Z","utc_offset":25200},"recent_run_totals":{"count":0,"distance":0,"moving_time":0,"elapsed_time":0,"elevation_gain":0},"all_run_totals":{"count":0,"distance":0,"moving_time":0,"elapsed_time":0,"elevation_gain":0},"this_month_run_totals":{"count":10,"distance":100134.1,"moving_time":38707,"elapsed_time":40251,"elevation_gain":990.4},"this_year_run_totals":{"count":10,"distance":100134.1,"moving_time":38707,"elapsed_time":40251,"elevation_gain":990.4}}};
+
     this.vr.version().subscribe((data: Version) => {
       this.buildNum = `${version.version}-${data.version}`;
     });

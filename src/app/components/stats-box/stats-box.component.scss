@@ -6,15 +6,15 @@
   display: none
 }
 
-@media screen and (max-height: 500px) {
-  .standard-stats {
-    display: none
-  }
+// @media screen and (max-height: 500px) {
+//   .standard-stats {
+//     display: none
+//   }
 
-  .mini-stats {
-    display: block
-  }
-}
+//   .mini-stats {
+//     display: block
+//   }
+// }
 
 @media screen and (max-height: 360px) {
   .standard-stats {
