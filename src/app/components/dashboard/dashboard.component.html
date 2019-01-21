@@ -21,8 +21,9 @@
         <nav class="flat d-flex justify-content-center footer-nav">
           <ul>
             <li><a [routerLink]="['/vr']" title="หน้าหลัก" class="text-danger"><fa-icon [icon]="faHome" class="fa-2x"></fa-icon></a></li>
-            <li><img src="/assets/img/odds-runners.png" width="48" height="48" [title]="version.version"></li>
+            <li><img src="/assets/img/odds-runners.png" width="48" height="48"></li>
             <li><a href="https://www.strava.com" target="_blank" title="ไป Strava ของฉัน" class="text-danger"><fa-icon [icon]="faStrava" class="fa-2x"></fa-icon></a></li>
+            <li>เวอร์ชั่น {{ version.version }}</li>
           </ul>
         </nav>
       </div>
