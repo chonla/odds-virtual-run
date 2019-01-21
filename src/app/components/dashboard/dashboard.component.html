@@ -16,7 +16,6 @@
           <ul>
             <li><a [routerLink]="['/vr/new']">สร้าง Virtual Run</a></li>
             <li><a href="" class="linkable" (click)="signOut()">ออกจากแอพ</a></li>
-            <li>เวอร์ชั่น {{ version.version }}</li>
           </ul>
         </nav>
         <nav class="flat d-flex justify-content-center footer-nav">
@@ -55,8 +54,15 @@
             </div>
           </div>
         </nav>
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-12 text-right">
+            Build version {{ version.version }}
+          </div>
         </div>
-      <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
+      </div>
     </main>
   </div>
 </div>
