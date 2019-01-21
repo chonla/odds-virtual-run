@@ -26,6 +26,7 @@ export class VrDetailComponent implements OnInit {
   engagement: Engagement;
   percentCompleted: number;
   completed: boolean;
+  remain: number;
 
   constructor(private vr: VrService, private auth: AuthService, private route: ActivatedRoute, private fb:FormBuilder, private router:Router) { }
 
@@ -57,6 +58,10 @@ export class VrDetailComponent implements OnInit {
         this.engagement = myEngagement[0];
         this.percentCompleted = this.engagement.percent_complete;
         this.completed = (this.engagement.taken_distance / 1000.0) >= this.engagement.distance;
+        this.remain = this.engagement.distance - (this.engagement.taken_distance / 1000.0);
+        if (this.remain < 0.0) {
+          this.remain = 0.0;
+        }
       }
     });
   }
