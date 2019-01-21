@@ -26,8 +26,8 @@ export class ApiRequestInterceptor {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (400 <= error.status && error.status <= 499) {
-           this.auth.clearToken();
-           this.router.navigate(['/']);
+            this.auth.clearToken();
+            this.router.navigate(['/']);
           }
           return throwError(error);
         })
