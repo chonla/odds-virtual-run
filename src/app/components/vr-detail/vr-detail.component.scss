@@ -19,3 +19,11 @@
     display: block;
   }
 }
+
+.vr-detail-box {
+  min-height: 48px;
+
+  .card-text {
+    min-height: 48px;
+  }
+}

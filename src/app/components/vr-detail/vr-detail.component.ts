@@ -5,7 +5,7 @@ import { Vr, Engagement } from 'src/app/models/vr';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PositiveNumberValidator } from 'src/app/validators/positive-number.validator';
 import { AuthService } from 'src/app/services/auth.service';
-import { faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faExclamation, faInfoCircle, faCalendarAlt, faHandshake } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-vr-detail',
@@ -13,7 +13,10 @@ import { faExclamation } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./vr-detail.component.scss']
 })
 export class VrDetailComponent implements OnInit {
+  faInfoCircle = faInfoCircle;
+  faCalendarAlt = faCalendarAlt;
   faExclamation = faExclamation;
+  faHandshake = faHandshake;
   joinForm: FormGroup;
   vrDetail: Vr;
   vrID: string;

@@ -1,62 +1,93 @@
 <div *ngIf="vrDetail">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ vrDetail.title }}</h5>
 
-  <div>
-    <h2>{{ vrDetail.title }}</h2>
-    <div class="vr-detail" [innerHTML]="vrDetail.detail"></div>
-    <h3>ระยะเวลา</h3>
-    <div class="vr-detail">{{ vrDetail.period[0] | date }} ถึง {{ vrDetail.period[1] | date }}</div>
-    <button class="btn btn-danger" data-toggle="modal" data-target="#joinModal" *ngIf="!joined && !joining">เข้าร่วม Virtual Run นี้</button>
-  </div>
+      <div class="speech-bubble px-3 py-3">
+        <div [innerHTML]="vrDetail.detail"></div>
+      </div>
 
-  <div class="mt-4" *ngIf="joined">
-    <h3>ความคืบหน้า</h3>
-    <p>
-      คุณสัญญาว่าจะวิ่งในกิจกรรมนี้เป็นระยะทาง <span class="text-danger font-weight-bold">{{ engagement.distance }}</span> ก.ม.
-      ตอนนี้คุณวิ่งไปแล้ว <span class="text-danger font-weight-bold">{{ (engagement.taken_distance / 1000.0) | number: '1.2-2' }}</span> ก.ม.
-      <span *ngIf="!completed">
-      ยังเหลืออีก <span class="text-danger font-weight-bold">{{ engagement.distance - (engagement.taken_distance / 1000.0) | number: '1.2-2' }}</span> ก.ม.
-        <span *ngIf="percentCompleted < 50.0">
-          หนทางยังอีกไกล ยังไหวอยู่ใช่ไหม สู้ ๆ นะ!!
-        </span>
-        <span *ngIf="50.0 <= percentCompleted && percentCompleted < 80.0">
-          เลยครึ่งทางมาแล้ว เก่งมาก ลุย ๆ!!
-        </span>
-        <span *ngIf="80.0 <= percentCompleted">
-          ใกล้แล้ว อีกนิดเดียว อย่าเพิ่งท้อ สู้ ๆ!!
-        </span>
+      <div class="media vr-detail-box mt-3">
+        <div class="media-body pl-3 pt-2">
+          <fa-icon [icon]="faCalendarAlt" class="fa-fw text-danger mr-3 mt-2"></fa-icon>
+          {{ vrDetail.period[0] | date }} ถึง {{ vrDetail.period[1] | date }}
+        </div>
+      </div>
+
+      <div class="media vr-detail-box" *ngIf="!joined && !joining">
+        <div class="media-body pt-2">
+          <button class="btn btn-danger" data-toggle="modal" data-target="#joinModal"><fa-icon [icon]="faHandshake" class="fa-fw text-light"></fa-icon> เข้าร่วม Virtual Run นี้</button>
+        </div>
+      </div>
+
+      <div class="row mt-4" *ngIf="joined">
+        <div class="col-4 text-center">
+          <div><span class="text-danger font-weight-bold text-super-large-3">{{ engagement.distance }}</span> ก.ม.</div>
+          <div class="text-muted mt--1">สัญญาไว้</div>
+        </div>
+        <div class="col-4 text-center">
+          <div><span class="text-danger font-weight-bold text-super-large-3">{{ (engagement.taken_distance / 1000.0) | number: '1.2-2' }}</span> ก.ม.</div>
+          <div class="text-muted mt--1">วิ่งไปแล้ว</div>
+        </div>
+        <div class="col-4 text-center">
+          <div><span class="text-danger font-weight-bold text-super-large-3">{{ engagement.distance - (engagement.taken_distance / 1000.0) | number: '1.2-2' }}</span> ก.ม.</div>
+          <div class="text-muted mt--1">เหลืออีก</div>
+        </div>
+      </div>
+
+      <div class="progress slim mt-3" *ngIf="joined">
+        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [style.width.%]="percentCompleted" [attr.aria-valuenow]="percentCompleted" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <span *ngIf="joined && !completed && percentCompleted < 50.0">
+        <div class="alert alert-danger flat-top" role="alert">
+        หนทางยังอีกไกล ยังไหวอยู่ใช่ไหม สู้ ๆ นะ!!
+        </div>
       </span>
-      <span *ngIf="completed">
-      คุณวิ่งครบตามระยะที่สัญญาไว้แล้ว สุดยอดมากเลย!!
+      <span *ngIf="joined && !completed && 50.0 <= percentCompleted && percentCompleted < 80.0">
+        <div class="alert alert-warning flat-top" role="alert">
+        เลยครึ่งทางมาแล้ว เก่งมาก ลุย ๆ!!
+        </div>
       </span>
-    </p>
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [style.width.%]="percentCompleted" [attr.aria-valuenow]="percentCompleted" aria-valuemin="0" aria-valuemax="100"></div>
+      <span *ngIf="joined && !completed && 80.0 <= percentCompleted">
+        <div class="alert alert-info flat-top" role="alert">
+        ใกล้แล้ว อีกนิดเดียว อย่าเพิ่งท้อ สู้ ๆ!!
+        </div>
+      </span>
+      <span *ngIf="joined && completed">
+        <div class="alert alert-success flat-top" role="alert">
+        คุณวิ่งครบตามระยะที่สัญญาไว้แล้ว สุดยอดมากเลย!!
+        </div>
+      </span>
+
+
+      <div class="mt-5">
+        <h5 class="card-title">คุณและเพื่อน ๆ</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ชื่อ</th>
+              <th>ระยะทางที่สัญญาไว้</th>
+              <th>วิ่งไปแล้ว</th>
+              <th>คิดเป็น %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="vrDetail.engagements.length == 0">
+              <td colspan="4">ยังไม่มีใครร่วมกิจกรรมนี้เลย <span *ngIf="!joined">ถ้าสนใจก็ <a class="linkable text-danger" data-toggle="modal" data-target="#joinModal" *ngIf="!joined && !joining">คลิกเลย!</a></span></td>
+            </tr>
+            <tr *ngFor="let e of vrDetail.engagements">
+              <td class="align-middle">{{ e.athlete_name }}</td>
+              <td class="align-middle">{{ e.distance }} ก.ม.</td>
+              <td class="align-middle">{{ e.taken_distance / 1000.0 | number : '1.2-2' }} ก.ม.</td>
+              <td class="align-middle">{{ e.percent_complete | number : '1.2-2' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
     </div>
-  </div>
-
-  <div class="mt-4">
-    <h3>คุณและเพื่อน ๆ</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ชื่อ</th>
-          <th>ระยะทางที่สัญญาไว้</th>
-          <th>วิ่งไปแล้ว</th>
-          <th>คิดเป็น %</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngIf="vrDetail.engagements.length == 0">
-          <td colspan="4">ยังไม่มีใครร่วมกิจกรรมนี้เลย <span *ngIf="!joined">ถ้าสนใจก็ <a class="linkable text-danger" data-toggle="modal" data-target="#joinModal" *ngIf="!joined && !joining">คลิกเลย!</a></span></td>
-        </tr>
-        <tr *ngFor="let e of vrDetail.engagements">
-          <td class="align-middle">{{ e.athlete_name }}</td>
-          <td class="align-middle">{{ e.distance }} ก.ม.</td>
-          <td class="align-middle">{{ e.taken_distance / 1000.0 | number : '1.2-2' }} ก.ม.</td>
-          <td class="align-middle">{{ e.percent_complete | number : '1.2-2' }}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 
   <div class="mt-5 bd-callout bd-callout-danger" *ngIf="joined || own">

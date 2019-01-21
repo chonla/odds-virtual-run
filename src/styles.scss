@@ -107,10 +107,71 @@ body {
   font-size: 0.8rem;
 }
 
+.text-super-large-1 {
+  font-size: 4rem;
+}
+
+.text-super-large-2 {
+  font-size: 3rem;
+}
+
+.text-super-large-3 {
+  font-size: 2rem;
+}
+
 .fa-1dot5x {
   font-size: 1.5em
 }
 
 .bt-1 {
   border-top: 1px solid #e0e0e0;
+}
+
+.bl-1 {
+  border-left: 1px solid #e0e0e0;
+}
+
+/* Speech bubble */
+
+.speech-bubble {
+	position: relative;
+	background: #f0f0f0;
+  border-radius: .4em;
+  margin-top: 35px;
+  border: 0;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 10%;
+	width: 0;
+	height: 0;
+	border: 26px solid transparent;
+	border-bottom-color: #f0f0f0;
+	border-top: 0;
+	border-left: 0;
+	margin-left: -13px;
+	margin-top: -26px;
+}
+
+/* negative margins */
+.mt--1 {
+  margin-top: -.5rem!important;
+}
+
+.mt--2 {
+  margin-top: -1rem!important;
+}
+
+.progress {
+  &.slim {
+    height: 0.2rem;
+  }
+}
+
+.flat-top {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
 }
