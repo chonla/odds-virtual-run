@@ -44,6 +44,14 @@ body {
     to {transform:rotate(360deg);}
 }
 
+.card.linkable {
+  cursor: pointer;
+
+  &:hover {
+    border-color: #d9534f;
+  }
+}
+
 .linkable {
   cursor: pointer;
 }
@@ -101,4 +109,8 @@ body {
 
 .fa-1dot5x {
   font-size: 1.5em
+}
+
+.bt-1 {
+  border-top: 1px solid #e0e0e0;
 }

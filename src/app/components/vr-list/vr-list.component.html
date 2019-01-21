@@ -1,51 +1,33 @@
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">ตาราง Virtual Run ที่เข้าร่วมแล้ว</h5>
-      <table class="table mt-4" *ngIf="myVrList">
-        <thead>
-          <tr>
-            <th>กิจกรรม</th>
-            <th>วันเริ่ม</th>
-            <th>วันสิ้นสุด</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let v of myVrList">
-            <td class="align-middle">{{ v.title }}</td>
-            <td class="align-middle">{{ v.period[0] | date : 'mediumDate' : '+0700' }}</td>
-            <td class="align-middle">{{ v.period[1] | date : 'mediumDate' : '+0700' }}</td>
-            <td class="align-middle"><a class="btn btn-danger" [routerLink]="['/vr', v.link]">ดูรายละเอียด</a></td>
-          </tr>
-          <tr *ngIf="myVrList.length === 0">
-            <td colspan="4">ยังไม่มี</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">ตาราง Virtual Run ที่เข้าร่วมแล้ว</h5>
+    <table class="table table-borderless mt-4" *ngIf="myVrList">
+      <tbody>
+        <tr *ngFor="let v of myVrList">
+          <td>
+            <app-vr-list-item [vr]="v"></app-vr-list-item>
+          </td>
+        </tr>
+        <tr *ngIf="myVrList.length === 0">
+          <td>ยังไม่มี</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
 
 <div class="card mt-3">
   <div class="card-body">
     <h5 class="card-title">ตาราง Virtual Run ทั้งหมด</h5>
-    <table class="table mt-4" *ngIf="vrList">
-      <thead>
-        <tr>
-          <th>กิจกรรม</th>
-          <th>วันเริ่ม</th>
-          <th>วันสิ้นสุด</th>
-          <th></th>
-        </tr>
-      </thead>
+    <table class="table table-borderless mt-4" *ngIf="vrList">
       <tbody>
         <tr *ngFor="let v of vrList">
-          <td class="align-middle">{{ v.title }}</td>
-          <td class="align-middle">{{ v.period[0] | date : 'mediumDate' : '+0700' }}</td>
-          <td class="align-middle">{{ v.period[1] | date : 'mediumDate' : '+0700' }}</td>
-          <td class="align-middle"><a class="btn btn-danger" [routerLink]="['/vr', v.link]">ดูรายละเอียด</a></td>
+          <td>
+            <app-vr-list-item [vr]="v"></app-vr-list-item>
+          </td>
         </tr>
         <tr *ngIf="vrList.length === 0">
-          <td colspan="4">ยังไม่มี</td>
+          <td>ยังไม่มี</td>
         </tr>
       </tbody>
     </table>
