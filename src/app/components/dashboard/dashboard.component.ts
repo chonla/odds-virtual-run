@@ -5,6 +5,7 @@ import { VrService } from '../../services/vr.service';
 import { Athlete } from 'src/app/models/athlete';
 import { AuthService } from 'src/app/services/auth.service';
 import { Version } from 'src/app/models/version';
+import { version } from 'src/environments/version';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +15,7 @@ import { Version } from 'src/app/models/version';
 export class DashboardComponent implements OnInit {
 
   me: Athlete;
-  version: Version;
+  buildNum: string;
   faHome = faHome;
   faStrava = faStrava;
   faSpinner = faSpinner;
@@ -29,7 +30,7 @@ export class DashboardComponent implements OnInit {
     });
 
     this.vr.version().subscribe((data: Version) => {
-      this.version = data;
+      this.buildNum = `${version.version}-${data.version}`;
     });
   }
 

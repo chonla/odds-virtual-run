@@ -3,16 +3,19 @@ import { VrService } from 'src/app/services/vr.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subject } from 'rxjs';
 import { Athlete } from 'src/app/models/athlete';
-import { Version } from '@angular/core';
+import { Version } from 'src/app/models/version';
+import { version } from 'src/environments/version';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
 
-  const MockVrService: jest.Mock<VrService> = jest.fn<VrService​​>(() => ({
-    me: jest.fn().mockReturnValue((new Subject<Athlete​​>()).asObservable()),
-    version: jest.fn().mockReturnValue((new Subject<Version>()).asObservable())
+  const mockVersion: Subject<Version> = new Subject<Version>();
+
+  const MockVrService: jest.Mock<VrService> = jest.fn<VrService>(() => ({
+    me: jest.fn().mockReturnValue((new Subject<Athlete>()).asObservable()),
+    version: jest.fn().mockReturnValue(mockVersion.asObservable())
   }));
-  const MockAuthService: jest.Mock<AuthService> = jest.fn<AuthService​​>(() => ({
+  const MockAuthService: jest.Mock<AuthService> = jest.fn<AuthService>(() => ({
     signOut: jest.fn()
   }));
   let mockVrService: VrService;
@@ -33,6 +36,14 @@ describe('DashboardComponent', () => {
 
     expect(mockVrService.me).toHaveBeenCalled();
     expect(mockVrService.version).toHaveBeenCalled();
+  });
+
+  it('should create buildNum from remote version and local version', () => {
+    component.ngOnInit();
+
+    mockVersion.next({version:'test'});
+
+    expect(component.buildNum).toEqual('dev-test');
   });
 
   it('should call signout', () => {
