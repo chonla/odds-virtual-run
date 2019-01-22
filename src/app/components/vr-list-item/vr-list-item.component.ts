@@ -10,10 +10,17 @@ import { faRunning } from '@fortawesome/free-solid-svg-icons';
 export class VrListItemComponent implements OnInit {
   faRunning = faRunning;
   @Input() vr: Vr;
+  over:boolean;
 
-  constructor() { }
+  constructor() {
+    this.over = false;
+  }
 
   ngOnInit() {
+    const periodEnd = new Date(this.vr.period[1]);
+    const end = new Date(periodEnd.getFullYear(), periodEnd.getMonth(), periodEnd.getDate(), 23, 59, 59, 999);
+    const today = new Date();
+    this.over = (end < today);
   }
 
 }

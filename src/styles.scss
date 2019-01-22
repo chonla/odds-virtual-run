@@ -193,3 +193,34 @@ body {
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
 }
+
+/* Rubber stamp */
+.rubber_stamp {
+  font-size: 26px;
+  line-height: 26px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #d9534f !important;
+  border: 3px solid #d9534f;
+  float: left;
+  padding: 4px 3px;
+  border-radius: 10px;
+  position: absolute;
+  opacity: 1;
+  margin-left: 10px;
+  display: block;
+}
+
+.rotate_left {
+  -webkit-transform: rotate(-5deg);
+  -o-transform: rotate(-5deg);
+  -moz-transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+}
+
+.rotate_right {
+  -webkit-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+}

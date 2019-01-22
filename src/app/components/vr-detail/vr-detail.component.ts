@@ -27,6 +27,7 @@ export class VrDetailComponent implements OnInit {
   percentCompleted: number;
   completed: boolean;
   remain: number;
+  over: boolean;
 
   constructor(private vr: VrService, private auth: AuthService, private route: ActivatedRoute, private fb:FormBuilder, private router:Router) { }
 
@@ -52,6 +53,12 @@ export class VrDetailComponent implements OnInit {
       const myEngagement = this.vrDetail.engagements.filter((o:Engagement) => {
         return `${o.athlete_id}` === myid;
       });
+
+      const periodEnd = new Date(this.vrDetail.period[1]);
+      const end = new Date(periodEnd.getFullYear(), periodEnd.getMonth(), periodEnd.getDate(), 23, 59, 59, 999);
+      const today = new Date();
+      this.over = (end < today);
+
       this.own = (`${this.vrDetail.created_by}` === myid);
       this.joined = (myEngagement.length > 0);
       if (this.joined) {

@@ -1,6 +1,7 @@
 <div *ngIf="vrDetail">
   <div class="card">
     <div class="card-body">
+      <div class="rubber_stamp rotate_left" *ngIf="over">จบแล้ว</div>
       <h5 class="card-title">{{ vrDetail.title }}</h5>
 
       <div class="speech-bubble px-3 py-3">

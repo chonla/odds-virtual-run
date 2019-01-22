@@ -1,7 +1,8 @@
 <div *ngIf="vr">
   <div class="card linkable" [routerLink]="['/vr', vr.link]">
     <div class="media">
-      <fa-icon [icon]="faRunning" class="fa-3x text-danger ml-3 mt-2"></fa-icon>
+      <div class="rubber_stamp rotate_left mt-3" *ngIf="over">จบแล้ว</div>
+      <fa-icon [icon]="faRunning" class="fa-3x ml-3 mt-2" [class.text-secondary]="over" [class.text-danger]="!over"></fa-icon>
       <div class="media-body">
         <div class="card-body">
           <h5 class="card-title">{{ vr.title }}</h5>
