@@ -63,38 +63,9 @@
         </div>
       </div>
     </div>
-    <!-- <main role="main" class="col-md-8 ml-sm-auto col-lg-9 px-4 main-content">
-      <div class="row top-nav">
-        <div class="pl-3" *ngIf="!me">
-          <fa-icon [icon]="faSpinner" class="spinning"></fa-icon> กำลังโหลด...
-        </div>
-        <nav class="pl-3" *ngIf="me">
-          <div class="media mb-3">
-            <a [routerLink]="['/vr']"><img [src]="me.profile" class="profile-photo"></a>
-            <div class="media-body">
-              <h5>{{ me.firstname }} {{ me.lastname }}</h5>
-              <span class="text-smaller-2" *ngIf="me.stats.recent.distance > 0.0">ล่าสุดคุณวิ่งไป {{ me.stats.recent.distance / 1000 | number:"1.2-2" }} ก.ม. ({{ me.stats.recent.start_date | friendlyDateTime }})</span>
-              <span class="text-smaller-2" *ngIf="me.stats.recent.distance == 0.0">ดูเหมือนว่าคุณจะยังไม่ได้เริ่มวิ่งเลยนะ หรือข้อมูลการวิ่งของคุณอาจจะยังไม่ได้อัพเดท รอหน่อยละกันนะ</span>
-            </div>
-          </div>
-          <div class="btn-toolbar mb-4" role="toolbar" aria-label="แอคชั่น">
-            <div class="btn-group mr-2" role="group">
-              <a [routerLink]="['/vr']" title="หน้าหลัก" class="btn btn-danger"><fa-icon [icon]="faHome" class="fa"></fa-icon></a>
-              <a [routerLink]="['/vr/new']" title="สร้าง Virtual Run" class="btn btn-danger"><fa-icon [icon]="faPlus" class="fa"></fa-icon></a>
-            </div>
-            <div class="btn-group mr-2" role="group">
-              <a href="https://www.strava.com" target="_blank" title="ไป Strava ของฉัน" class="btn btn-danger"><fa-icon [icon]="faStrava" class="fa"></fa-icon></a>
-            </div>
-            <div class="btn-group" role="group">
-              <a href="" class="btn btn-danger linkable" (click)="signOut()"><fa-icon [icon]="faSignOutAlt" class="fa"></fa-icon></a>
-            </div>
-          </div>
-        </nav>
-      </div>-->
-      <div class="page-content">
-        <router-outlet></router-outlet>
-      </div>
-    <!--</main>-->
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
   <div class="row">
     <div class="col-12 text-right version mb-2 mt-2">
