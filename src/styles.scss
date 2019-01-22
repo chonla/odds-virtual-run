@@ -107,6 +107,7 @@ body {
   font-size: 0.8rem;
 }
 
+
 .text-super-large-1 {
   font-size: 4rem;
 }
@@ -117,6 +118,20 @@ body {
 
 .text-super-large-3 {
   font-size: 2rem;
+}
+
+@media screen and (max-width: 575px) {
+  .text-super-large-1 {
+    font-size: 3rem;
+  }
+
+  .text-super-large-2 {
+    font-size: 2rem;
+  }
+
+  .text-super-large-3 {
+    font-size: 1.3rem;
+  }
 }
 
 .fa-1dot5x {
