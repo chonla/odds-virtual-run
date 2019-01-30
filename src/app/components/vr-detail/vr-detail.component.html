@@ -40,22 +40,27 @@
         <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [style.width.%]="percentCompleted" [attr.aria-valuenow]="percentCompleted" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
 
-      <span *ngIf="joined && !completed && percentCompleted < 50.0">
+      <span *ngIf="!start">
+        <div class="alert alert-secondary flat-top" role="alert">
+        ใจร่ม ๆ นะ กิจกรรมยังไม่เริ่ม
+        </div>
+      </span>
+      <span *ngIf="joined && !completed && percentCompleted < 50.0 && start">
         <div class="alert alert-danger flat-top" role="alert">
         หนทางยังอีกไกล ยังไหวอยู่ใช่ไหม สู้ ๆ นะ!!
         </div>
       </span>
-      <span *ngIf="joined && !completed && 50.0 <= percentCompleted && percentCompleted < 80.0">
+      <span *ngIf="joined && !completed && 50.0 <= percentCompleted && percentCompleted < 80.0 && start">
         <div class="alert alert-warning flat-top" role="alert">
         เลยครึ่งทางมาแล้ว เก่งมาก ลุย ๆ!!
         </div>
       </span>
-      <span *ngIf="joined && !completed && 80.0 <= percentCompleted">
+      <span *ngIf="joined && !completed && 80.0 <= percentCompleted && start">
         <div class="alert alert-info flat-top" role="alert">
         ใกล้แล้ว อีกนิดเดียว อย่าเพิ่งท้อ สู้ ๆ!!
         </div>
       </span>
-      <span *ngIf="joined && completed">
+      <span *ngIf="joined && completed && start">
         <div class="alert alert-success flat-top" role="alert">
         คุณวิ่งครบตามระยะที่สัญญาไว้แล้ว สุดยอดมากเลย!!
         </div>
