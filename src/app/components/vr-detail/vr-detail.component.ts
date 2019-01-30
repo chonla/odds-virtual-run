@@ -61,7 +61,7 @@ export class VrDetailComponent implements OnInit {
       const end = new Date(periodEnd.getFullYear(), periodEnd.getMonth(), periodEnd.getDate(), 23, 59, 59, 999);
       const today = new Date();
       this.over = (end < today);
-      this.start = (today < begin);
+      this.start = (begin <= today);
 
       this.own = (`${this.vrDetail.created_by}` === myid);
       this.joined = (myEngagement.length > 0);
