@@ -1,4 +1,4 @@
-FROM trion/ng-cli-e2e:latest AS builder
+FROM trion/ng-cli-e2e:7.2.2 AS builder
 
 WORKDIR /opt
 
